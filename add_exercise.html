@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker - Add Exercise</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light gray background color */
+    }
+
+    .exercise-container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .success-message {
+      display: none;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <!-- Add Exercise Page -->
+  <div class="container exercise-container">
+    <h2 class="mb-4">Add Exercise</h2>
+    <form id="exercise-form">
+      <div class="form-group">
+        <label for="exercise-select">Select Exercise</label>
+        <select class="form-control" id="exercise-select">
+          <option value="Running">Running</option>
+          <option value="Cycling">Cycling</option>
+          <option value="Swimming">Swimming</option>
+          <!-- Add more exercise options as needed -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="duration">Duration (minutes)</label>
+        <input type="number" class="form-control" id="duration" placeholder="Enter duration">
+      </div>
+      <div class="form-group">
+        <label for="exercise-date">Date</label>
+        <input type="date" class="form-control" id="exercise-date">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <p class="success-message">Exercise successfully added!</p>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    $(document).ready(function() {
+      // Handle form submission
+      $('#exercise-form').submit(function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        
+        // Retrieve values from the form
+        var selectedExercise = $('#exercise-select').val();
+        var duration = $('#duration').val();
+        var date = $('#exercise-date').val(); // Get the date value
+        
+        // Create an object to represent the exercise
+        var exercise = {
+          type: selectedExercise,
+          duration: duration,
+          date: date // Add the date to the exercise object
+        };
+        
+        // Get existing exercises from local storage
+        var exercises = JSON.parse(localStorage.getItem('exercises')) || [];
+        
+        // Add the new exercise to the array
+        exercises.push(exercise);
+        
+        // Store the updated exercises back in local storage
+        localStorage.setItem('exercises', JSON.stringify(exercises));
+
+        // Display success message
+        $('.success-message').css('display', 'block').fadeOut(2000);
+
+        // Clear the form fields after submission
+        $('#exercise-select').val('');
+        $('#duration').val('');
+        $('#exercise-date').val('');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker - Login</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light gray background color */
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Page -->
+  <div class="container login-container">
+    <h2 class="mb-4">Login</h2>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    $(document).ready(function() {
+      // Handle form submission
+      $('#login-form').submit(function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        
+        // Retrieve values from the form
+        var username = $('#username').val();
+        var password = $('#password').val();
+        
+        // Here, you can perform login authentication (e.g., sending the data to a server for verification)
+        // For demonstration purposes, let's assume the login is successful
+        var isLoggedIn = true;
+
+        if (isLoggedIn) {
+          // Redirect the user to the dashboard page upon successful login
+          window.location.href = 'dashboard.html';
+        } else {
+          // Display an error message or perform other actions for unsuccessful login
+          alert('Login failed. Please try again.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise History</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <h1>Exercise History</h1>
+  <div id="exercise-list" class="container">
+    <!-- Exercise history will be displayed here -->
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    $(document).ready(function() {
+      // Retrieve exercises from local storage
+      var exercises = JSON.parse(localStorage.getItem('exercises')) || [];
+      
+      // Display exercises in the exercise history
+      var exerciseList = $('#exercise-list');
+      exercises.forEach(function(exercise) {
+        exerciseList.append('<div class="card mb-2"><div class="card-body"><h5 class="card-title">' + exercise.type + '</h5><p class="card-text">Duration: ' + exercise.duration + ' minutes</p></div></div>');
+      });
+    });
+  </script>
+</body>
+</html>
