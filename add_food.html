@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker - Add Food Consumption</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light gray background color */
+    }
+
+    .food-container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .success-message {
+      display: none;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <!-- Add Food Consumption Page -->
+  <div class="container food-container">
+    <h2 class="mb-4">Add Food Consumption</h2>
+    <form name="food-form" onsubmit="return addFood()">
+      <div class="form-group">
+        <label for="food-input">Food Item</label>
+        <input type="text" class="form-control" id="food-input" placeholder="Enter food item">
+      </div>
+      <div class="form-group">
+        <label for="calories">Calories Consumed</label>
+        <input type="number" class="form-control" id="calories" placeholder="Enter calories">
+      </div>
+      <div class="form-group">
+        <label for="meal-time">Meal Time</label>
+        <input type="time" class="form-control" id="meal-time">
+      </div>
+      <div class="form-group">
+        <label for="food-date">Date</label>
+        <input type="date" class="form-control" id="food-date">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <p class="success-message">Food consumption successfully added!</p>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    function addFood() {
+      var foodItem = document.forms["food-form"]["food-input"].value;
+      var calories = document.forms["food-form"]["calories"].value;
+      var mealTime = document.forms["food-form"]["meal-time"].value;
+      var date = document.forms["food-form"]["food-date"].value;
+
+      // Create an object to represent the food consumption
+      var food = {
+        item: foodItem,
+        calories: calories,
+        mealTime: mealTime,
+        date: date
+      };
+
+      // Get existing food consumptions from session storage
+      var foodConsumptions = JSON.parse(sessionStorage.getItem('foodConsumptions')) || [];
+
+      // Add the new food consumption to the array
+      foodConsumptions.push(food);
+
+      // Store the updated food consumptions back in session storage
+      sessionStorage.setItem('foodConsumptions', JSON.stringify(foodConsumptions));
+
+      // Display success message
+      document.querySelector('.success-message').style.display = 'block';
+      setTimeout(function() {
+        document.querySelector('.success-message').style.display = 'none';
+      }, 2000);
+
+      // Clear the form fields after submission
+      document.forms["food-form"]["food-input"].value = '';
+      document.forms["food-form"]["calories"].value = '';
+      document.forms["food-form"]["meal-time"].value = '';
+      document.forms["food-form"]["food-date"].value = '';
+
+      return false; // Prevent form submission
+    }
+  </script>
+</body>
+</html>

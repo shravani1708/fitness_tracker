@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker - Food Consumption History</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light gray background color */
+    }
+
+    #food-table {
+      max-width: 600px;
+      margin: 50px auto;
+    }
+
+    th, td {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="text-center">Food Consumption History</h1>
+  <div id="food-table" class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Food Item</th>
+          <th>Calories Consumed</th>
+          <th>Meal Time</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="food-list">
+        <!-- Food consumption history will be displayed here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    // Retrieve food consumptions from session storage
+    var foodConsumptions = JSON.parse(sessionStorage.getItem('foodConsumptions')) || [];
+    
+    // Display food consumptions in the food consumption history table
+    var foodTable = $('#food-list');
+    foodConsumptions.forEach(function(food) {
+      var html = '<tr>';
+      html += '<td>' + food.item + '</td>';
+      html += '<td>' + food.calories + '</td>';
+      html += '<td>' + food.mealTime + '</td>';
+      html += '<td>' + food.date + '</td>';
+      html += '</tr>';
+      foodTable.append(html);
+    });
+  </script>
+</body>
+</html>
