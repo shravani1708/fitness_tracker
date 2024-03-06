@@ -6,11 +6,37 @@
   <title>Exercise History</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light gray background color */
+    }
+
+    #exercise-table {
+      max-width: 600px;
+      margin: 50px auto;
+    }
+
+    th, td {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <h1>Exercise History</h1>
-  <div id="exercise-list" class="container">
-    <!-- Exercise history will be displayed here -->
+  <h1 class="text-center">Exercise History</h1>
+  <div id="exercise-table" class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Exercise Type</th>
+          <th>Duration (minutes)</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="exercise-list">
+        <!-- Exercise history will be displayed here -->
+      </tbody>
+    </table>
   </div>
 
   <!-- Bootstrap JS and jQuery -->
@@ -19,15 +45,18 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!-- Custom JavaScript -->
   <script>
-    $(document).ready(function() {
-      // Retrieve exercises from local storage
-      var exercises = JSON.parse(localStorage.getItem('exercises')) || [];
-      
-      // Display exercises in the exercise history
-      var exerciseList = $('#exercise-list');
-      exercises.forEach(function(exercise) {
-        exerciseList.append('<div class="card mb-2"><div class="card-body"><h5 class="card-title">' + exercise.type + '</h5><p class="card-text">Duration: ' + exercise.duration + ' minutes</p></div></div>');
-      });
+    // Retrieve exercises from session storage
+    var exercises = JSON.parse(sessionStorage.getItem('exercises')) || [];
+    
+    // Display exercises in the exercise history table
+    var exerciseTable = $('#exercise-list');
+    exercises.forEach(function(exercise) {
+      var html = '<tr>';
+      html += '<td>' + exercise.type + '</td>';
+      html += '<td>' + exercise.duration + '</td>';
+      html += '<td>' + exercise.date + '</td>';
+      html += '</tr>';
+      exerciseTable.append(html);
     });
   </script>
 </body>
