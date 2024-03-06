@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker - Create Account</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light gray background color */
+    }
+
+    .account-container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .success-message {
+      display: none;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <!-- Create Account Page -->
+  <div class="container account-container">
+    <h2 class="mb-4">Create Account</h2>
+    <form name="account-form" onsubmit="return createAccount()">
+      <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" class="form-control" id="fullname" placeholder="Enter full name">
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" placeholder="Enter age">
+      </div>
+      <div class="form-group">
+        <label for="height">Height (in cm)</label>
+        <input type="number" class="form-control" id="height" placeholder="Enter height">
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight (in kg)</label>
+        <input type="number" class="form-control" id="weight" placeholder="Enter weight">
+      </div>
+      <div class="form-group">
+        <label for="calories">Approx. Daily Calorie Intake</label>
+        <input type="number" class="form-control" id="calories" placeholder="Enter calorie intake">
+      </div>
+      <!-- Add more fields for additional personal details as needed -->
+
+      <button type="submit" class="btn btn-primary">Create Account</button>
+      <p class="success-message">Account successfully created!</p>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    function createAccount() {
+      var fullname = document.forms["account-form"]["fullname"].value;
+      var username = document.forms["account-form"]["username"].value;
+      var password = document.forms["account-form"]["password"].value;
+      var age = document.forms["account-form"]["age"].value;
+      var height = document.forms["account-form"]["height"].value;
+      var weight = document.forms["account-form"]["weight"].value;
+      var calories = document.forms["account-form"]["calories"].value;
+      // Add more variables for additional personal details as needed
+
+      // Create an object to represent the account
+      var account = {
+        fullname: fullname,
+        username: username,
+        password: password,
+        age: age,
+        height: height,
+        weight: weight,
+        calories: calories
+        // Add more properties for additional personal details as needed
+      };
+
+      // Perform further actions such as storing account data in a database or session storage
+      // For demonstration purposes, let's assume the account creation is successful
+      var isAccountCreated = true;
+
+      if (isAccountCreated) {
+        // Display success message
+        document.querySelector('.success-message').style.display = 'block';
+        setTimeout(function() {
+          document.querySelector('.success-message').style.display = 'none';
+        }, 2000);
+
+        // Clear the form fields after submission
+        document.forms["account-form"]["fullname"].value = '';
+        document.forms["account-form"]["username"].value = '';
+        document.forms["account-form"]["password"].value = '';
+        document.forms["account-form"]["age"].value = '';
+        document.forms["account-form"]["height"].value = '';
+        document.forms["account-form"]["weight"].value = '';
+        document.forms["account-form"]["calories"].value = '';
+        // Clear more fields for additional personal details as needed
+
+        return false; // Prevent form submission
+      } else {
+        // Handle unsuccessful account creation
+        // Display an error message or perform other actions
+        return false; // Prevent form submission
+      }
+    }
+  </script>
+</body>
+</html>
