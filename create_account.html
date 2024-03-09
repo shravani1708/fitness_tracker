@@ -9,7 +9,8 @@
   <!-- Custom CSS -->
   <style>
     body {
-      background-color: #f8f9fa; /* Light gray background color */
+      background-color: #f5f5f5; /* Light gray background color */
+      font-family: Arial, sans-serif; /* Change the font */
     }
 
     .account-container {
@@ -17,20 +18,54 @@
       margin: 100px auto;
       padding: 20px;
       background-color: #fff;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px; /* Increase border radius for smoother edges */
+      box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Increase box shadow for depth */
+      transition: all 0.3s ease; /* Add transition effect */
+    }
+
+    .account-container:hover {
+      transform: translateY(-5px); /* Add a slight lift effect on hover */
+    }
+
+    .account-container h2 {
+      text-align: center; /* Center align the heading */
+      margin-bottom: 30px; /* Add some space below the heading */
+      color: #333; /* Darken the heading color */
+    }
+
+    .form-group label {
+      font-weight: bold; /* Make labels bold */
+    }
+
+    .form-control {
+      border-radius: 5px; /* Rounded corners for form inputs */
+    }
+
+    .btn-primary {
+      width: 100%; /* Make button full width */
+      margin-top: 20px; /* Add space above the button */
+      transition: all 0.3s ease; /* Add transition effect */
+      background-color: #005f69; /* Change button color */
+      border: none; /* Remove border */
+    }
+
+    .btn-primary:hover {
+      background-color: #004953; /* Darken button color on hover */
     }
 
     .success-message {
       display: none;
-      color: green;
+      color: #2ecc71; /* Success message color */
+      text-align: center; /* Center align success message */
+      margin-top: 20px; /* Add space above the success message */
+      transition: all 0.3s ease; /* Add transition effect */
     }
   </style>
 </head>
 <body>
   <!-- Create Account Page -->
   <div class="container account-container">
-    <h2 class="mb-4">Create Account</h2>
+    <h2>Create Account</h2>
     <form name="account-form" onsubmit="return createAccount()">
       <div class="form-group">
         <label for="fullname">Full Name</label>
@@ -60,7 +95,6 @@
         <label for="calories">Approx. Daily Calorie Intake</label>
         <input type="number" class="form-control" id="calories" placeholder="Enter calorie intake">
       </div>
-      <!-- Add more fields for additional personal details as needed -->
 
       <button type="submit" class="btn btn-primary">Create Account</button>
       <p class="success-message">Account successfully created!</p>
@@ -81,9 +115,7 @@
       var height = document.forms["account-form"]["height"].value;
       var weight = document.forms["account-form"]["weight"].value;
       var calories = document.forms["account-form"]["calories"].value;
-      // Add more variables for additional personal details as needed
 
-      // Create an object to represent the account
       var account = {
         fullname: fullname,
         username: username,
@@ -92,21 +124,21 @@
         height: height,
         weight: weight,
         calories: calories
-        // Add more properties for additional personal details as needed
       };
 
-      // Perform further actions such as storing account data in a database or session storage
-      // For demonstration purposes, let's assume the account creation is successful
+      // Save user information to local storage
+      localStorage.setItem('user', JSON.stringify(account));
+
       var isAccountCreated = true;
 
       if (isAccountCreated) {
-        // Display success message
         document.querySelector('.success-message').style.display = 'block';
         setTimeout(function() {
           document.querySelector('.success-message').style.display = 'none';
+          // Redirect to login page after success
+          window.location.href = 'login.html';
         }, 2000);
 
-        // Clear the form fields after submission
         document.forms["account-form"]["fullname"].value = '';
         document.forms["account-form"]["username"].value = '';
         document.forms["account-form"]["password"].value = '';
@@ -114,13 +146,10 @@
         document.forms["account-form"]["height"].value = '';
         document.forms["account-form"]["weight"].value = '';
         document.forms["account-form"]["calories"].value = '';
-        // Clear more fields for additional personal details as needed
 
-        return false; // Prevent form submission
+        return false;
       } else {
-        // Handle unsuccessful account creation
-        // Display an error message or perform other actions
-        return false; // Prevent form submission
+        return false;
       }
     }
   </script>

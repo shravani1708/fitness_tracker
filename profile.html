@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f5f5f5; /* Light gray background color */
+      font-family: Arial, sans-serif; /* Change the font */
+    }
+
+    .profile-container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px; /* Increase border radius for smoother edges */
+      box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Increase box shadow for depth */
+    }
+
+    .profile-container h2 {
+      text-align: center; /* Center align the heading */
+      margin-bottom: 30px; /* Add some space below the heading */
+      color: #333; /* Darken the heading color */
+    }
+
+    .profile-info {
+      margin-bottom: 20px; /* Add space between profile info */
+    }
+
+    .profile-info span {
+      font-weight: bold; /* Make profile info labels bold */
+    }
+
+    .btn-primary {
+      width: 100%; /* Make button full width */
+      margin-top: 20px; /* Add space above the button */
+      transition: all 0.3s ease;
+       /* Add transition effect */
+      background-color: #005f69; /* Change button color */
+      border: none; /* Remove border */
+    }
+    
+
+    .btn-primary:hover {
+      background-color: #2ecc71; /* Change button color on hover */
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- Profile Page -->
+  <div class="container profile-container">
+    <h2>User Profile</h2>
+    <div class="profile-info">
+      <span>Full Name:</span> <span id="fullname"></span>
+    </div>
+    <div class="profile-info">
+      <span>Username:</span> <span id="username"></span>
+    </div>
+    <div class="profile-info">
+      <span>Age:</span> <span id="age"></span>
+    </div>
+    <div class="profile-info">
+      <span>Height (cm):</span> <span id="height"></span>
+    </div>
+    <div class="profile-info">
+      <span>Weight (kg):</span> <span id="weight"></span>
+    </div>
+    <div class="profile-info">
+      <span>Daily Calorie Intake:</span> <span id="calories"></span>
+    </div>
+
+    <a href="edit_profile.html" class="btn btn-primary">Edit Profile</a>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    // Retrieve user information from local storage
+    var user = JSON.parse(localStorage.getItem('user'));
+
+    // Populate profile information
+    document.getElementById('fullname').innerText = user.fullname;
+    document.getElementById('username').innerText = user.username;
+    document.getElementById('age').innerText = user.age;
+    document.getElementById('height').innerText = user.height;
+    document.getElementById('weight').innerText = user.weight;
+    document.getElementById('calories').innerText = user.calories;
+  </script>
+</body>
+</html>

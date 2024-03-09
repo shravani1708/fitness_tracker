@@ -14,7 +14,7 @@
       background-attachment: fixed;
     }
     .navbar-collapse {
-      justify-content: center; /* Center align navbar items */
+      justify-content: flex-end; /* Align navbar items to the end */
     }
 
     .transparent-container {
@@ -28,12 +28,13 @@
     /* CSS Selector for changing color of li elements in navbar */
     .navbar-nav .nav-item a.nav-link {
       color:#005f69;
-      font-weight: bold
+      font-weight: bold;
+      margin-right: auto; /* Push the links to the right */
     }
 
     .navbar-nav .nav-item a.nav-link:hover {
       color:#005f69;
-      font-weight: bold
+      font-weight: bold;
     }
   </style>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -46,7 +47,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav w-100 justify-content-between"> <!-- Use justify-content-between to make links fill the space -->
           <li class="nav-item active">
             <a class="nav-link" href="dashboard.html">Home <span class="sr-only">(current)</span></a>
           </li>
@@ -67,9 +68,9 @@
               <span class="profile-icon">User1</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="profile.html">Profile</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="logout.html">Logout</a>
             </div>
           </li>
         </ul>
